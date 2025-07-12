@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <windows.h>
+
+void wall_distance (float distance){
+	if (distance< 10.00){
+		printf ("Distance: %.2f!!! Turn back\n", distance);
+	} else if (distance>=10.00){
+		printf ("Distance: %.2f!!! Keep going\n", distance);
+	}
+}
+
+float sensor_data (float min, float max){
+	float data= min + ((float)rand()/RAND_MAX)* (max-min);
+	return data;
+}
+
+int main (){
+	srand (time(NULL));
+	while (1){
+		float distance= sensor_data (0.00, 10000.00);
+		wall_distance (distance);
+		Sleep (3000);
+	}
+	return 0;
+}
